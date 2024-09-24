@@ -1,0 +1,48 @@
+Given an array of integers a, your task is to calculate the digits that occur the most number of times in the array. Return the array of these digits in ascending order.
+
+Example
+
+For a = [25, 2, 3, 57, 38, 41], the output should be solution(a) = [2, 3, 5].
+
+function solution(a) {
+    let array=[]
+    let i=0
+    let temp;
+    while(a.length>0){
+        while(a[i]>9){
+            temp=a[i]%10
+            array.push(temp)
+            a[i]=Math.floor(a[i]/10)
+        }
+        array.push(a[i])
+        a.shift()
+    }
+    
+    let maxCount=0
+    for(let i=0; i<10; i++){
+        let tempCount=0;
+        for(let j=0; j<array.length; j++){
+            if(array[j]==i){
+                tempCount++
+            }
+        }
+        if(tempCount>maxCount){
+            maxCount=tempCount;
+        }
+    }
+    
+    let maxArray=[]
+    for(let i=0; i<10; i++){
+        let tempCount=0;
+        for(let j=0; j<array.length; j++){
+            if(array[j]==i){
+                tempCount++
+            }
+        }
+        if(tempCount==maxCount){
+            maxArray.push(i)
+        }
+    }
+    
+    return maxArray; 
+}
